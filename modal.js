@@ -196,7 +196,7 @@ locationInputs.forEach((input) => {
   });
 });
 
-  function validate() {
+  function validate(event) {
     const firstNameValid = validateName(firstNameInput, firstNameError);
     const lastNameValid = validateName(lastNameInput, lastNameError);
     const emailValid = validateEmail(emailInput, emailError);
@@ -213,12 +213,27 @@ locationInputs.forEach((input) => {
       locationValid;
   
     if (isValid) {
+
+      console.log("First Name:", firstNameInput.value);
+      console.log("Last Name:", lastNameInput.value);
+      console.log("Email:", emailInput.value);
+      console.log("Birthdate:", birthdateInput.value);
+      console.log("Quantity:", quantityInput.value);
+      console.log("Location:", Array.from(locationInputs).find(input => input.checked)?.value);
+      console.log("Checkbox:", checkbox.checked);
+
       launchM();
       event.preventDefault();
       handleCloseModal();
+
+      event.target.reset();
+
       return true;
     } else {
       return false;
     }
   }
+
+  const form = document.querySelector("form");
+  form.addEventListener("submit", validate);  
   
